@@ -92,6 +92,7 @@ type Config struct {
 	Postgres        storage.Postgres
 	Clusters        []prom.Options
 	Ibex            Ibex
+	Grafana         string
 }
 
 type LabelAndKey struct {

@@ -1,7 +1,7 @@
 # my global config
 global:
-  scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
-  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+  scrape_interval:     30s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 30s # Evaluate rules every 15 seconds. The default is every 1 minute.
   # scrape_timeout is set to the global default (10s).
 
 # Alertmanager configuration
@@ -32,3 +32,54 @@ scrape_configs:
     file_sd_configs:
     - files:
       - targets.json
+
+  - job_name: 'sap'
+    params:
+      sap-client: ['300']
+      sap-language: ['ZH']
+    metrics_path: /prometheus/metrics
+    basic_auth:
+      username: WWSHENG
+      password: 654321
+    static_configs:
+    - targets:
+      - 172.18.3.83:50000
+
+  - job_name: 'pg_exporter'
+    static_configs:
+      - targets: ['172.18.3.234:9187']
+
+  - job_name: 'cadvisor_exporter'
+    static_configs:
+      - targets: ['172.18.3.234:9381']
+
+  - job_name: 'node_exporter'
+    static_configs:
+      - targets: ['172.18.3.234:9300']
+  - job_name: 'aipdemo_node_exporter'
+    static_configs:
+      - targets: ['172.18.3.202:9300']
+ 
+  - job_name: 'sap1809demo_exporter'
+    static_configs:
+      - targets: ['172.18.3.83:9100']
+  - job_name: '1809demo-aas_exporter'
+    static_configs:
+      - targets: ['172.18.3.82:9100']
+  - job_name: 'saphana01_exporter'
+    static_configs:
+      - targets: ['172.18.3.30:9100']
+  - job_name: sap-s41809-83
+    static_configs:
+      - targets: ['172.18.3.83:9680']
+        labels:
+          instance: sap-s41809-83
+
+  - job_name: saphanadb_exporter_evo
+    metrics_path: /
+    static_configs:
+      - targets: ['172.18.3.226:9668']
+  - job_name: saphanadb_exporter
+    metrics_path: /
+    static_configs:
+      - targets: ['172.18.3.234:9668']

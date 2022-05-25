@@ -70,6 +70,10 @@ func configNoRoute(r *gin.Engine) {
 }
 
 func configRoute(r *gin.Engine, version string) {
+
+	r.Any("/grafana/*proxyPath", ssoAuth(), user(), grafanaProxy)
+	// r.Any("/grafana/*proxyPath", grafanaProxy)
+
 	if config.C.HTTP.PProf {
 		pprof.Register(r, "/api/debug/pprof")
 	}
