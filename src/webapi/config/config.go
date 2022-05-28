@@ -91,10 +91,11 @@ type Config struct {
 	AnonymousAccess      AnonymousAccess
 	LDAP                 ldapx.LdapSection
 	Redis                storage.RedisConfig
-	DB                	 ormx.DBConfig
+	DB                   ormx.DBConfig
 	Clusters             []prom.Options
 	Ibex                 Ibex
 	OIDC                 oidcc.Config
+	Grafana              string
 }
 
 type LabelAndKey struct {
