@@ -100,6 +100,7 @@ type Config struct {
 	Ibex                 Ibex
 	OIDC                 oidcc.Config
 	TargetMetrics        map[string]string
+	Grafana              string
 }
 
 type ClusterOptions struct {
